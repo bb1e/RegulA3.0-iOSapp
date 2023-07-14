@@ -11,7 +11,7 @@
 		741FDD1A2A5F84110069A8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 741FDD192A5F84110069A8A9 /* GoogleService-Info.plist */; };
 		7464B7292A28E1F8009496EF /* ByEstrategiaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464B7282A28E1F8009496EF /* ByEstrategiaViewController.swift */; };
 		7464B72C2A28F3B8009496EF /* EstrategiaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7464B72B2A28F3B8009496EF /* EstrategiaTableViewCell.swift */; };
-		747CD10E2A2555C800050684 /* CriançasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CD10D2A2555C800050684 /* CriançasManager.swift */; };
+		747CD10E2A2555C800050684 /* CriancasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CD10D2A2555C800050684 /* CriancasManager.swift */; };
 		747CD1102A25560400050684 /* Crianca.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CD10F2A25560400050684 /* Crianca.swift */; };
 		747CD1122A25569100050684 /* DataNascimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CD1112A25569100050684 /* DataNascimento.swift */; };
 		747CD1142A255F0900050684 /* CreateChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747CD1132A255F0900050684 /* CreateChildViewController.swift */; };
@@ -80,7 +80,7 @@
 		741FDD192A5F84110069A8A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		7464B7282A28E1F8009496EF /* ByEstrategiaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByEstrategiaViewController.swift; sourceTree = "<group>"; };
 		7464B72B2A28F3B8009496EF /* EstrategiaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstrategiaTableViewCell.swift; sourceTree = "<group>"; };
-		747CD10D2A2555C800050684 /* CriançasManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CriançasManager.swift"; sourceTree = "<group>"; };
+		747CD10D2A2555C800050684 /* CriancasManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriancasManager.swift; sourceTree = "<group>"; };
 		747CD10F2A25560400050684 /* Crianca.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crianca.swift; sourceTree = "<group>"; };
 		747CD1112A25569100050684 /* DataNascimento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataNascimento.swift; sourceTree = "<group>"; };
 		747CD1132A255F0900050684 /* CreateChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChildViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				747E53AB2A17A52300F7915D /* DataManager.swift */,
-				747CD10D2A2555C800050684 /* CriançasManager.swift */,
+				747CD10D2A2555C800050684 /* CriancasManager.swift */,
 				74F7D0752A5889A8003B7ED4 /* RelatorioManager.swift */,
 				74F7D0792A58EF92003B7ED4 /* ChatManager.swift */,
 			);
@@ -441,7 +441,7 @@
 				7481397A2A6098CB0035F302 /* RegistoSemanalTableViewCell.swift in Sources */,
 				74F7D0712A582779003B7ED4 /* PerfilViewController.swift in Sources */,
 				747E536A2A17877F00F7915D /* ViewController.swift in Sources */,
-				747CD10E2A2555C800050684 /* CriançasManager.swift in Sources */,
+				747CD10E2A2555C800050684 /* CriancasManager.swift in Sources */,
 				747CD11D2A26C7D700050684 /* MaisViewController.swift in Sources */,
 				74F7D07E2A59A444003B7ED4 /* DetalhesEstrategiasViewController.swift in Sources */,
 				747E53AC2A17A52300F7915D /* DataManager.swift in Sources */,
