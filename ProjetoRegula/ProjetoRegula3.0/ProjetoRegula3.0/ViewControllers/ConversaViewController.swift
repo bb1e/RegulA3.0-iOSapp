@@ -122,6 +122,7 @@ extension ConversaViewController: InputBarAccessoryViewDelegate {
                 if success {
                     print("message sent")
                     self.listenForMessages(userUID: selfSender.senderId, senderUID: self.otherUserId, shouldScrollToBottom: true)
+                    inputBar.inputTextView.text = ""
                 }
                 else {
                     print("failed to sent")

@@ -150,8 +150,11 @@ class PerfilViewController: UIViewController,UITableViewDataSource,UITableViewDe
         print("entrei")
         let tabbar = tabBarController as! PrincipalTabBarController
         crianca = tabbar.crianca
-        
-        nome.text = crianca?.nome
+        if chooseInforDash.selectedSegmentIndex == 1 {
+            nome.text = "Top 5 Estrategias"
+        }else{
+            nome.text = crianca?.nome
+        }
         dataAni.text = "\(crianca?.dataNascimento.dia ?? 1) / \(crianca?.dataNascimento.mes ?? 1) / \(crianca?.dataNascimento.ano ?? 1970)"
         
         tatil.setTitle(crianca?.ssAv1, forSegmentAt: 1)

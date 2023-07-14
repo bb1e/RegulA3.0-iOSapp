@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 class DetalhesEstrategiasViewController: UIViewController {
 
+    @IBOutlet weak var usouEstrategia: UISwitch!
     var estrategia : Estrategia?
     var crianca: Crianca?
     @IBOutlet weak var feedbackBtn: UIButton!
@@ -163,7 +164,10 @@ class DetalhesEstrategiasViewController: UIViewController {
         dateFormatter.dateFormat = "MMM"
         let extenso: String = dateFormatter.string(from:dataHoje)
 
-        
+        var valorUsou = false
+        if  usouEstrategia.isOn{
+            valorUsou = true
+        }
         
         let newSession = db.collection("feedbackEstrategias_demo").document(doct)
         let sessionDoc: [String: Any] = [
@@ -180,7 +184,7 @@ class DetalhesEstrategiasViewController: UIViewController {
                 "miniAno": year.suffix(2),
                 "minutos": minutes
             ],
-            "realizou" : true,
+            "realizou" : valorUsou,
             "idEstrategia": estrategiaId,
             "avaliacao": barAvaliacao.value
         ]
