@@ -64,6 +64,7 @@ class RegistoSemanalViewController: UIViewController {
                 self.brincarJogar.setValue(Float(result.avaliacao6), animated: false)
                 self.higienePessoal.setValue(Float(result.avaliacao7), animated: false)
                 self.comentario.text = result.comentario
+                self.enviarBtn.setTitle("Atualizar", for: .normal)
             }
         }
         

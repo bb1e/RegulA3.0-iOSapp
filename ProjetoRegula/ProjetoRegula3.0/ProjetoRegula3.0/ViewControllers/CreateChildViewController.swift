@@ -41,7 +41,9 @@ class CreateChildViewController: UIViewController {
         let date3y = Calendar.current.date(byAdding: .year, value: -3, to: Date()) ?? Date()
         let date6y = Calendar.current.date(byAdding: .year, value: -6, to: Date()) ?? Date()
         
-        if (dataNascimento.date.timeIntervalSince(date3y) < 0 && !(dataNascimento.date.timeIntervalSince(date6y) < 0)){
+        print(dataNascimento.date.timeIntervalSince(date6y))
+        print(dataNascimento.date.timeIntervalSince(date3y))
+        if (dataNascimento.date.timeIntervalSince(date3y) > 0 || dataNascimento.date.timeIntervalSince(date6y) < 0){
             print("Por favor meter uma data entre 3 a 6 anos atras")
             return
         }

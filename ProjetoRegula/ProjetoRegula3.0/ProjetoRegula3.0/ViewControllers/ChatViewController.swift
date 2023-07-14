@@ -48,9 +48,9 @@ class ChatViewController: UIViewController {
         setupTableView()
         fetchConversations()
         startListeningForConversations()
-        print("im in chat screen")
     }
     
+    ///faz load de conversas e fica à escuta
     private func startListeningForConversations() {
         guard let uid = UserDefaults.standard.value(forKey: "uid") as? String else {
             return
@@ -71,6 +71,7 @@ class ChatViewController: UIViewController {
             }
         })
     }
+
     
     @objc private func didTapComposeButton(){
         let vc = NovaConversaViewController()
@@ -100,6 +101,7 @@ class ChatViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        startListeningForConversations()
         
     }
     

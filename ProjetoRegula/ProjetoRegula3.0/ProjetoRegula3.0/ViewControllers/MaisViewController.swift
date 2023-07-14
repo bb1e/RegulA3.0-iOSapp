@@ -47,5 +47,20 @@ class MaisViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func viewWillAppear(_ animated: Bool){
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+        
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        let storyboard = UIStoryboard(name: "Main",bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "loginpage")
+        vc.modalPresentationStyle = .overFullScreen
+        
+        present(vc,animated: true)
+    }
 
 }

@@ -11,7 +11,7 @@ import MessageKit
 
 class ChatManager {
     
-    ///buscar user atual e juntar o nome
+    ///buscar user atual e juntar o nome - setup das variáveis de ambiente
     public func getCurrentUser() {
         guard let currentUser = Auth.auth().currentUser else {
             //just to make sure
@@ -158,7 +158,6 @@ class ChatManager {
         
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "hh:mm a"
-        //time is not working as expected
         //timeFormatter.dateStyle = .none
         //timeFormatter.timeStyle = .short
         
@@ -184,10 +183,9 @@ class ChatManager {
                         let timeString = messageData["time"] as? String ?? ""
                         let messageType = messageData["type"] as? String ?? ""
                     
-                    //self.getOtherUserName(senderUID: userUID) { senderName in
                         print(senderUIDName)
                         let sender = Sender(senderId: senderID, displayName: userUIDName)
-                            //print("depois sender")
+
                         let stringD = dateString + " " + timeString
                         //print(stringD)
                         if let sentDate = dateFormatter.date(from: stringD) {
@@ -197,23 +195,21 @@ class ChatManager {
                                 let messageKind: MessageKind
                                 
                                 if messageType == "text" {
-                                    //print("passei pelo tipo")
                                     messageKind = .text(messageText)
                                 } else {
                                     messageKind = .text("")
                                 }
                                 let message = Message(sender: sender, messageId: messageID, sentDate: sentDate, kind: messageKind, time: time)
                                 messages.append(message)
-                                print("dei append")
+                                /*print("dei append")
                                 print("Sender: \(message.sender.displayName)")
                                 print("Sender ID: \(message.sender.senderId)")
                                 print("Message ID: \(message.messageId)")
                                 print("Sent Date: \(message.sentDate)")
                                 print("Message Kind: \(message.kind)")
                                 print("Time: \(message.time)")
-                                print("---")
+                                print("---")*/
                             }
-                        //}
                     }
                 }
                 else {
@@ -234,7 +230,6 @@ class ChatManager {
             }
             
             for messageSnapshot in messagesSnapshot {
-                //print("achei msgns")
                 //print(messageSnapshot)
                 //print(messageSnapshot.value)
                 if let messageData = messageSnapshot.value as? [String: Any] {
@@ -245,10 +240,8 @@ class ChatManager {
                         let timeString = messageData["time"] as? String ?? ""
                         let messageType = messageData["type"] as? String ?? ""
                     
-                    //print("antes sender")
-                    //self.getOtherUserName(senderUID: senderUID) { senderName in
                     let sender = Sender(senderId: senderID, displayName: senderUIDName)
-                    //print("depois sender")
+
                         let stringD = dateString + " " + timeString
                         //print(stringD)
                         if let sentDate = dateFormatter.date(from: stringD) {
@@ -256,20 +249,19 @@ class ChatManager {
                                 let messageKind: MessageKind
                                 
                                 if messageType == "text" {
-                                    //print("passei pelo tipo")
                                     messageKind = .text(messageText)
                                 } else {
                                     messageKind = .text("")
                                 }
                                 let message = Message(sender: sender, messageId: messageID, sentDate: sentDate, kind: messageKind, time: time)
                                 messages.append(message)
-                                print("dei append")
+                                /*print("dei append")
                                  print("Sender: \(message.sender.displayName)")
                                  print("Message ID: \(message.messageId)")
                                  print("Sent Date: \(message.sentDate)")
                                  print("Message Kind: \(message.kind)")
                                  print("Time: \(message.time)")
-                                 print("---")
+                                 print("---")*/
                             }
                     }
                 }
@@ -284,6 +276,7 @@ class ChatManager {
         print("sucesso")
     
         group.notify(queue: .main) {
+            //ordena as msgns por ordem de data time
             let sortedMessages = messages.sorted { $0.sentDate < $1.sentDate}
             completion(.success(sortedMessages))
         }
@@ -291,32 +284,49 @@ class ChatManager {
 
     
     ///fica à escuta se uma nova msgm é adicionada à firebase
-    func observeNewMessages(userUID: String, senderUID: String) {
-        let conversationRef1 = Database.database().reference().child("Messages").child(userUID).child(senderUID)
-        let conversationRef2 = Database.database().reference().child("Messages").child(senderUID).child(userUID)
+    func observeNewMessages(userUID: String, senderUID: String, completion: @escaping (Result<[Message], Error>) -> Void) {
+        let databaseRef = Database.database().reference().child("Messages")
+        let conversationRef1 = databaseRef.child(userUID).child(senderUID)
+        let conversationRef2 = databaseRef.child(senderUID).child(userUID)
         
-        // Observe new messages in real-time from conversationRef1
-        conversationRef1.observe(.childAdded) { snapshot in
+        let observeHandler: (DataSnapshot) -> Void = { _ in
             self.getAllMessagesForConversation(userUID: userUID, senderUID: senderUID) { result in
                 switch result {
                 case .success(let messages):
                     // Handle the updated messages array
-                    print("New messages: \(messages)")
+                    print("Updated messages: \(messages)")
+                    completion(.success(messages))
                 case .failure(let error):
-                    print("Failed to get new messages: \(error)")
+                    // Handle the error
+                    print("Failed to fetch messages: \(error)")
+                    completion(.failure(error))
                 }
             }
         }
         
-        // Observe new messages in real-time from conversationRef2
-        conversationRef2.observe(.childAdded) { snapshot in
-            self.getAllMessagesForConversation(userUID: userUID, senderUID: senderUID) { result in
+        conversationRef1.observe(.childAdded, with: observeHandler)
+        conversationRef2.observe(.childAdded, with: observeHandler)
+    }
+    
+    
+    ///fica à escuta que uma conversa seja adicionada
+    func listenForNewConversations(userUID: String, completion: @escaping (Result<[Conversation], Error>) -> Void) {
+        let conversationsRef = Database.database().reference().child("Conversations").child(userUID)
+        
+        // Observe for new child (conversation) added
+        conversationsRef.observe(.childAdded) { snapshot in
+            
+            // Call the function to get all conversations
+            self.getAllConversations(for: userUID) { result in
                 switch result {
-                case .success(let messages):
-                    // Handle the updated messages array
-                    print("New messages: \(messages)")
+                case .success(let conversations):
+                    // Handle the new conversations
+                    print("New conversations:", conversations)
+                    
+                    // You can update your UI or perform any other actions with the new conversations here
+                    
                 case .failure(let error):
-                    print("Failed to get new messages: \(error)")
+                    print("Failed to get new conversations:", error)
                 }
             }
         }

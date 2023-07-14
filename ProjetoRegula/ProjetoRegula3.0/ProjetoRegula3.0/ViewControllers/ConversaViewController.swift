@@ -50,23 +50,22 @@ class ConversaViewController: MessagesViewController {
             return nil
         }
         return Sender(senderId: uid as String,
-               displayName: "Me")
-               //displayName: UserDefaults.standard.value(forKey: "name") as! String)
+               displayName: "Eu")
     }
     
     private func listenForMessages(userUID: String, senderUID: String, shouldScrollToBottom: Bool){
-        chatManager.getAllMessagesForConversation(userUID: selfSender!.senderId, senderUID: otherUserId, completion: { [weak self] result in
+        chatManager.observeNewMessages(userUID: selfSender!.senderId, senderUID: otherUserId, completion: {  result in
             switch result {
             case .success(let messages):
                 guard !messages.isEmpty else {
                     return
                 }
-                self?.messages = messages
+                self.messages = messages
                 DispatchQueue.main.async {
-                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+                    self.messagesCollectionView.reloadDataAndKeepOffset()
                     
                     if shouldScrollToBottom {
-                        self?.messagesCollectionView.scrollToLastItem()
+                        self.messagesCollectionView.scrollToLastItem()
                     }
                 }
             case .failure(let error):
@@ -163,6 +162,19 @@ extension ConversaViewController: MessagesDataSource, MessagesLayoutDelegate, Me
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section] //o msgkit usa section para separar as msgns
+    }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let sender = message.sender
+        var avatar = Avatar()
+        if sender.senderId == selfSender?.senderId {
+            avatar = Avatar(initials: "Eu")
+        }
+        else {
+            print(sender.displayName.prefix(2))
+            avatar = Avatar(initials: String(sender.displayName.prefix(2)))
+        }
+        avatarView.set(avatar: avatar)
     }
     
 }

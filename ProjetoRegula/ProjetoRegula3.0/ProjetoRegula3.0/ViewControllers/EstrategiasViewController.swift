@@ -29,7 +29,7 @@ class EstrategiasViewController: UIViewController,UICollectionViewDataSource, UI
         collectionView.isUserInteractionEnabled = true
         collectionView.delegate = self
         dataManager = DataManager()
-        
+    
         dataManager.fetchTipoEstrategias{result in
             
             self.tipoEstrategia = result

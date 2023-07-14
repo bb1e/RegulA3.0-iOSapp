@@ -37,6 +37,9 @@
 		747E53AC2A17A52300F7915D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E53AB2A17A52300F7915D /* DataManager.swift */; };
 		747E53AE2A17C08800F7915D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E53AD2A17C08800F7915D /* LoginViewController.swift */; };
 		747E53B32A17E3EB00F7915D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E53B22A17E3EB00F7915D /* RegisterViewController.swift */; };
+		748139762A6046740035F302 /* Top5TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748139752A6046740035F302 /* Top5TableViewCell.swift */; };
+		748139782A604C700035F302 /* Top5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748139772A604C700035F302 /* Top5.swift */; };
+		7481397A2A6098CB0035F302 /* RegistoSemanalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748139792A6098CB0035F302 /* RegistoSemanalTableViewCell.swift */; };
 		74F7D05C2A54FE07003B7ED4 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7D05B2A54FE07003B7ED4 /* ChatViewController.swift */; };
 		74F7D0602A563FAF003B7ED4 /* ConversaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7D05F2A563FAF003B7ED4 /* ConversaViewController.swift */; };
 		74F7D0632A565E70003B7ED4 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 74F7D0622A565E70003B7ED4 /* MessageKit */; };
@@ -104,6 +107,9 @@
 		747E53AB2A17A52300F7915D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		747E53AD2A17C08800F7915D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		747E53B22A17E3EB00F7915D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		748139752A6046740035F302 /* Top5TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5TableViewCell.swift; sourceTree = "<group>"; };
+		748139772A604C700035F302 /* Top5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5.swift; sourceTree = "<group>"; };
+		748139792A6098CB0035F302 /* RegistoSemanalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistoSemanalTableViewCell.swift; sourceTree = "<group>"; };
 		74F7D05B2A54FE07003B7ED4 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		74F7D05F2A563FAF003B7ED4 /* ConversaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversaViewController.swift; sourceTree = "<group>"; };
 		74F7D0672A56E123003B7ED4 /* EstrategiasFavoritasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstrategiasFavoritasViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,8 @@
 			children = (
 				741D88522A5C698400CDE5EF /* ConversaTableViewCell.swift */,
 				7464B72B2A28F3B8009496EF /* EstrategiaTableViewCell.swift */,
+				748139752A6046740035F302 /* Top5TableViewCell.swift */,
+				748139792A6098CB0035F302 /* RegistoSemanalTableViewCell.swift */,
 			);
 			path = tableView;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				747CD11A2A26B4CE00050684 /* Session.swift */,
 				74F7D06E2A576DA0003B7ED4 /* RegistoSemanal.swift */,
 				74F7D07F2A59B374003B7ED4 /* Feedback.swift */,
+				748139772A604C700035F302 /* Top5.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -429,6 +438,7 @@
 				747E53AE2A17C08800F7915D /* LoginViewController.swift in Sources */,
 				747CD1142A255F0900050684 /* CreateChildViewController.swift in Sources */,
 				74F7D06D2A575FBC003B7ED4 /* RegistoSemanalViewController.swift in Sources */,
+				7481397A2A6098CB0035F302 /* RegistoSemanalTableViewCell.swift in Sources */,
 				74F7D0712A582779003B7ED4 /* PerfilViewController.swift in Sources */,
 				747E536A2A17877F00F7915D /* ViewController.swift in Sources */,
 				747CD10E2A2555C800050684 /* CriançasManager.swift in Sources */,
@@ -439,6 +449,7 @@
 				747E53B32A17E3EB00F7915D /* RegisterViewController.swift in Sources */,
 				747CD1212A27964A00050684 /* TrocarCriancasViewController.swift in Sources */,
 				747E53A92A17A43C00F7915D /* Estrategia.swift in Sources */,
+				748139782A604C700035F302 /* Top5.swift in Sources */,
 				747CD1242A283FE000050684 /* TipoEstrategiaCollectionViewCell.swift in Sources */,
 				747CD11B2A26B4CE00050684 /* Session.swift in Sources */,
 				747E53982A17950300F7915D /* EstrategiasViewController.swift in Sources */,
@@ -453,6 +464,7 @@
 				7464B7292A28E1F8009496EF /* ByEstrategiaViewController.swift in Sources */,
 				747CD11F2A26D0A800050684 /* ResetPasswordViewController.swift in Sources */,
 				74F7D0802A59B374003B7ED4 /* Feedback.swift in Sources */,
+				748139762A6046740035F302 /* Top5TableViewCell.swift in Sources */,
 				747CD1102A25560400050684 /* Crianca.swift in Sources */,
 				74F7D05C2A54FE07003B7ED4 /* ChatViewController.swift in Sources */,
 				747CD1122A25569100050684 /* DataNascimento.swift in Sources */,
