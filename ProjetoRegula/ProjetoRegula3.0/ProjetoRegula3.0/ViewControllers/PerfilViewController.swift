@@ -164,6 +164,47 @@ class PerfilViewController: UIViewController,UITableViewDataSource,UITableViewDe
         gustativo.setTitle(crianca?.ssAv5, forSegmentAt: 1)
         propriocetivo.setTitle(crianca?.ssAv6, forSegmentAt: 1)
         vestibular.setTitle(crianca?.ssAv7, forSegmentAt: 1)
+        
+        dataManager = DataManager()
+        
+        top5 = []
+        relatorio = []
+        
+        tabletop5.reloadData()
+        tableregisto.reloadData()
+        
+        dataManager.fetchTop5EstrategiasByFeedback(idCrianca: crianca?.id ?? ""){
+            top5atr, valorestop5 in
+            for i in 0..<valorestop5.count{
+                if top5atr[i] != " "{
+                    self.top5.append(Top5(valor: valorestop5[i], texto: top5atr[i]))
+                    self.top5 = self.top5.sorted(by: {$0.valor > $1.valor})
+                    self.tabletop5.reloadData()
+                    
+                }
+            }
+            for i in 0..<self.top5.count{
+                self.dataManager.fetchEstrategiaById(id: self.top5[i].texto){
+                    result in
+                    
+                    self.top5[i].texto = result
+                    self.tabletop5.reloadData()
+                }
+            }
+            
+        }
+        relatorioManager = RelatorioManager()
+        
+        relatorioManager.fetchRelatoriosCriancaId(crianca: crianca ??  Crianca(comentario: "null", created_at: -1, dataNascimento: DataNascimento(ano: 2001, dia: 11, horas: 11, idade: 1, mes: 1, mesStr: "Maio", miniAno: 01, minutos: 11), dataUltimaAvaliacao: "null", id: "nao existe", genero: "null", idSession: "null", idTerapeuta: "null", nome: "null", parentName: "null", status:"null", storageImageRef: "null", tipoAutismo: "null", estrategiasFavoritas: [], estrategiasRecomendadas: [],ssAv1: "Nenhum",ssAv2: "Nenhum",ssAv3:"Nenhum",ssAv4:"Nenhum",ssAv5:"Nenhum",ssAv6:"Nenhum",ssAv7:"Nenhum")) { result in
+            
+            for i in result{
+                self.relatorio.append(i)
+                self.tableregisto.reloadData()
+            }
+        }
+    
+
+
     }
     /*
     // MARK: - Navigation
